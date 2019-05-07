@@ -54,7 +54,7 @@ http.createServer(function (req, res) {
 
     if (req.method.toLowerCase() == "get") {
           //第二种方式
-  var path="upload/123.sql";
+  var path="upload/1.txt";
   var f = fs.createReadStream(path);
   res.writeHead(200, {
     'Content-Type': 'application/force-download',
@@ -64,5 +64,5 @@ http.createServer(function (req, res) {
   console.log('文件下载了');
        
     }
-}).listen(3000, "localhost");
-console.log('文件上传下载服务开始：3000')
+}).listen(4040);
+console.log('文件上传下载服务开始：4000')
