@@ -1,9 +1,10 @@
 var http = require("http");
 var fs = require("fs");
-
+let filenamenew='';
 http.createServer(function (req, res) {
     res.writeHead(200, { "Content-type": "text/html;charset=UTF-8", "Access-Control-Allow-Origin": "*" });
     if (req.method.toLowerCase() == "post") {
+
         //新建一个空数组接受流的信息
         var chunks = [];
         //获取长度
@@ -40,6 +41,10 @@ http.createServer(function (req, res) {
             //图片数据
             var nbuf = buffer.slice(rems[3] + 2, rems[rems.length - 2]);
             let address = "./upload/" + filename;
+            filenamenew=address;
+
+console.log(filenamenew);
+
             //创建空文件并写入内容
             fs.writeFile(address, nbuf, function (err) {
                 if (err) {
@@ -49,7 +54,12 @@ http.createServer(function (req, res) {
                 }
             })
         })
-        res.end();
+
+        let aaa={'filename':filenamenew};
+
+        console.log(aaa);
+              
+        res.end(JSON.stringify(aaa));
     }
 
     if (req.method.toLowerCase() == "get") {
@@ -65,4 +75,4 @@ http.createServer(function (req, res) {
        
     }
 }).listen(4040);
-console.log('文件上传下载服务开始：4000')
+console.log('文件上传下载服务开始：4040')
